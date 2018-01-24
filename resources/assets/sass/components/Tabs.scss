@@ -1,0 +1,68 @@
+$Tabs-active-color: tomato;
+
+.Tabs {
+  @extend %list-unstyled;
+  position:       relative;
+  display:        inline-flex;
+  margin-bottom:  2em;
+  padding-bottom: 1em; // Allows checked button bottom triangle to be visible
+  overflow:       hidden;
+
+  &--center {
+    display:         flex;
+    justify-content: center;
+  }
+
+  input {
+    position:   absolute;
+    top:        -100vh;
+    visibility: hidden;
+  }
+
+  label {
+    display:          inline-block;
+    min-width:        calc-em(120px);
+    padding:          .75em 1.5em;
+    text-align:       center;
+    background-color: $color-gray-lighter;
+    cursor:           pointer;
+
+    &:hover {
+      background-color: $color-gray-light;
+    }
+
+  }
+
+  > li:first-child > label {
+    border-radius: 4px 0 0 4px;
+  }
+
+  > li:last-child > label {
+    border-radius: 0 4px 4px 0;
+  }
+
+  input:checked + label {
+    position: relative;
+    color:    #fff;
+
+    &,
+    &:hover {
+      background-color: $Tabs-active-color;
+    }
+
+    &:before {
+      content:      '';
+      position:     absolute;
+      bottom:       -.5em;
+      left:         50%;
+      height:       0;
+      width:        0;
+      margin-left:  -.25em;
+      border-left:  .5em solid transparent;
+      border-right: .5em solid transparent;
+      border-top:   .5em solid $Tabs-active-color;
+    }
+
+  }
+
+}

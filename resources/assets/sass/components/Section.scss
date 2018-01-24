@@ -1,0 +1,50 @@
+.Section {
+  @include fluid-size(padding-bottom, 320px, 32px, $Container-max-width, 120px);
+  padding-top: calc-em(54px);
+
+  &.Section--gray {
+    background-color: $section-bg-color;
+  }
+}
+
+.Section-container {
+  @extend .Container;
+}
+
+.Section-container--narrow {
+  @extend .Container--narrow;
+}
+
+.Section-body {
+  margin-top: 3em;
+}
+
+.Section-title {
+  @include fluid-type(320px, 22px, 1080px, 32px);
+  position:       relative;
+  padding-bottom: .75em;
+  margin:         0;
+  text-transform: uppercase;
+  text-align:     center;
+
+  &:after {
+    content:          '';
+    position:         absolute;
+    bottom:           0;
+    left:             50%;
+    width:            200px;
+    height:           4px;
+    background-color: $color-brand-primary;
+    transform:        translateX(-100px);
+  }
+
+}
+
+.Section-intro {
+  @include fluid-type(320px, 16px, 1080px, 18px);
+  max-width:  620px;
+  margin:     2em auto auto;
+  text-align: center;
+  color:      $secondary-text;
+
+}

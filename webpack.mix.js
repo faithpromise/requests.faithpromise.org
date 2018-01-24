@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+const { mix } = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,18 @@ let mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+    externals: {
+        'axios':   'axios',
+        'moment':  'moment',
+        'vue':     'Vue',
+        'pikaday': 'Pikaday',
+        '_':       'lodash'
+    },
+    resolve:   {
+        alias: { vue: 'vue/dist/vue.js' },
+    }
+});
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');

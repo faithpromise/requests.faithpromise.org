@@ -1,9 +1,24 @@
+@import "../../../node_modules/normalize.css/normalize";
+@import "variables/variables";
+@import "mixins/mixins";
+@import "functions/functions";
+@import "utilities/utilities";
+@import "base/base";
+@import "components/components";
 
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+body {
+  padding: 3em 0;
+}
 
-// Variables
-@import "variables";
+.max-width-620 {
+  max-width: 620px;
+}
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+.max-width-800 {
+  max-width: 800px;
+}
+
+.center {
+  margin-right: auto;
+  margin-left:  auto;
+}

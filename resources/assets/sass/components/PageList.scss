@@ -1,0 +1,52 @@
+$PageList-icon-size: 128px;
+
+.PageList {
+  max-width: 1080px;
+  margin:    0 auto;
+}
+
+.PageList-menu {
+  @extend %list-unstyled;
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  color:           $color-gray-dark;
+}
+
+.PageList-item {
+  width:      100%;
+  max-width:  calc-em(360px);
+  text-align: center;
+}
+
+.PageList-link {
+  @include link-colors-all(currentColor);
+  display:     block;
+  padding:     3em;
+  white-space: normal;
+  transition:  all .25s ease-in-out;
+
+  &,
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $color-gray-lighter;
+  }
+
+}
+
+.PageList-icon {
+  height: calc-em($PageList-icon-size);
+  width:  calc-em($PageList-icon-size);
+}
+
+.PageList-title {
+  @include fluid-type(320px, 18px, 800px, 22px);
+  margin: .5em 0 0;
+}
+
+.PageList-description {
+  margin: 0;
+}

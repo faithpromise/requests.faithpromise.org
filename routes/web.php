@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Route;
+
+Route::post('/tickets', 'TicketsController@send')->name('send');
+Route::post('/attachments', 'AttachmentsController@store')->name('send');
+
+/** @noinspection PhpVoidFunctionResultUsedInspection */
+Route::get('{path?}', ['uses' => 'Controller@index'])->where('path', '.+');

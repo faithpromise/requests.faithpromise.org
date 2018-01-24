@@ -1,0 +1,35 @@
+$TicketTypesNav-icon-size: 40px;
+
+.TicketTypesNav {
+  @extend %list-unstyled;
+  display:         flex;
+  flex-wrap:       wrap;
+  justify-content: center;
+  color:           $color-gray-dark;
+}
+
+.TicketTypesNav-item {
+  margin: .5em;
+}
+
+.TicketTypesNav-icon {
+  height: $TicketTypesNav-icon-size;
+  width:  $TicketTypesNav-icon-size;
+}
+
+.TicketTypesNav-link {
+  @include link-colors($color-gray-dark, $color-gray-darkest, $color-gray-dark, $color-gray-dark);
+  display:       block;
+  padding:       .5em;
+  border-radius: 4px;
+
+  &.router-link-active {
+    background-color: $color-gray-lighter;
+  }
+
+  &:hover {
+    background-color: tomato;
+    color:            #fff;
+  }
+
+}

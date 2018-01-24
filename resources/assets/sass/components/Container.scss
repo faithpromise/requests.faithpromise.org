@@ -1,0 +1,19 @@
+%Container {
+  @include container();
+}
+
+%container-padding {
+  @include container-padding();
+}
+
+.Container {
+  @extend %Container;
+}
+
+%Container--narrow {
+  @include container(620px);
+}
+
+.Container--narrow {
+  @extend %Container--narrow;
+}
