@@ -21,7 +21,7 @@ class TicketsController extends Controller {
 
         foreach ($delivery_methods as $method) {
             $ticket = TicketFactory::create($method);
-            $ticket->send($request->all());
+            $ticket->send($request);
         }
 
         return ['success' => true];

@@ -1,10 +1,10 @@
 <template>
 
   <ticket-form
-          type="tech"
-          title="Tech Support"
-          intro="Please let us know how we can help."
-          message-label="Please help us by describing the issue with as much detail as possible.">
+          type="web"
+          title="Website Change"
+          intro="Let's change the interwebs!"
+          message-label="Please help us by describing the issue or change with as much detail as possible.">
   </ticket-form>
 
 </template>

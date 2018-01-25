@@ -16,7 +16,7 @@
 </template>
 <script>
 
-    import attachmentService from '../tickets/attachments.service';
+    import attachmentService from './attachments.service';
 
     export default {
 
