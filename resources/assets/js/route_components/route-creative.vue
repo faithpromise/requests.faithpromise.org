@@ -62,7 +62,7 @@
 
                 project_type: PROJECT_TYPE_EVENT,
                 advertising:  [],
-                event_date:   '',
+                event_date:  '2018-04-01',
 
                 advertising_options: [
                     { value: 'Promotional Materials' },
@@ -97,7 +97,7 @@
             },
 
             message_label() {
-                return 'Please help us by describing your ' + (this.is_event ? 'event' : 'project') + ' with as much detail as possible.';
+                return 'Please help us by describing your ' + (this.is_event ? 'event' : 'project') + ' and needs with as much detail as possible.';
             },
 
             postscript() {

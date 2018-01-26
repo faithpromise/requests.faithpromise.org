@@ -17,7 +17,7 @@ class TicketsController extends Controller {
             'ticket_type' => 'required',
         ]);
 
-        $delivery_methods = DeliveryMethod::where('ticket_type', '=', $request->get('ticket_type'));
+        $delivery_methods = DeliveryMethod::where('ticket_type', '=', $request->get('ticket_type'))->get();
 
         foreach ($delivery_methods as $method) {
             $ticket = TicketFactory::create($method);

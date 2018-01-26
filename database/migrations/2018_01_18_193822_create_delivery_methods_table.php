@@ -15,6 +15,7 @@ class CreateDeliveryMethodsTable extends Migration {
             $table->increments('id');
             $table->string('ticket_type');
             $table->string('delivery_method');
+            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('zendesk_subdomain')->nullable();
             $table->string('zendesk_username')->nullable();

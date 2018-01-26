@@ -69,11 +69,11 @@
             return {
 
                 ticket:             {
-                    name:        '',
-                    email:       '',
-                    event_date:  '',
-                    subject:     '',
-                    message:     '',
+                    name:        'Barney Fife',
+                    email:       'barney@maybery.com',
+                    subject:     'Easter Sunday',
+                    message:     'Lorm ipsum means that its really importent for you to stay off drugs and stay in scool. You need to no things that will help you in life. Like MATHS and gym. You don\'t want to be dum.',
+                    postscript:  '',
                     ticket_type: this.type,
                     files:       [],
                 },
@@ -81,6 +81,17 @@
                 is_uploading_files: false,
 
             }
+        },
+
+        watch: {
+
+            postscript: {
+                immediate: true,
+                handler(value) {
+                    this.ticket.postscript = value;
+                },
+            },
+
         },
 
         methods: {
@@ -96,7 +107,7 @@
                 this.is_saving = true;
 
                 ticketService.send(this.ticket).then((result) => {
-
+                    this.is_saving = false;
                 });
 
             },

@@ -11,10 +11,15 @@ class AttachmentsController extends Controller {
         $result = [];
 
         foreach ($request->allFiles() as $file) {
-            $path = $file->storeAs('temp', $file->getClientOriginalName());
+
+            $file_name = preg_replace('/\.' . $file->getClientOriginalExtension() . '$/', '', trim($file->getClientOriginalName()));
+            $file_name = str_slug($file_name) . '.' . strtolower($file->getClientOriginalExtension());
+
+            $path = $file->storeAs('attachments', $file_name, ['disk' => 's3']);
             $result[] = [
                 'name' => $file->getClientOriginalName(),
                 'path' => $path,
+                'url'  => 'https://s3.' . config('filesystems.disks.s3.region') . '.amazonaws.com/' . config('filesystems.disks.s3.bucket') . '/' . $path,
             ];
         }
 

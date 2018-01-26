@@ -8,7 +8,7 @@ class TicketFactory {
 
     public static function create(DeliveryMethod $method) {
 
-        $class_name = '\\App\\Tickets\\' . studly_case($method->ticket_type);
+        $class_name = '\\App\\Tickets\\' . studly_case($method->delivery_method);
 
         return new $class_name($method);
     }
