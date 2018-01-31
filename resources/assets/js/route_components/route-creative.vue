@@ -80,6 +80,8 @@
 
         computed: {
 
+            // TODO: Computed `teamwork_tasks` based on advertising that gets sent with `ticket` and auto add them to teamwork
+
             is_event() {
                 return this.project_type === PROJECT_TYPE_EVENT;
             },

@@ -9,7 +9,7 @@
     </label>
     <ul class="FileList">
       <li v-for="(file, index) in files" :key="index" @click="remove(index)" title="Remove Attachment">
-        {{ index }} - {{ file.name }}
+        {{ index + 1 }} - {{ file.name }}
       </li>
     </ul>
   </div>

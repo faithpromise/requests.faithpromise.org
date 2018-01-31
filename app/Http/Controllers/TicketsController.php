@@ -20,8 +20,8 @@ class TicketsController extends Controller {
         $delivery_methods = DeliveryMethod::where('ticket_type', '=', $request->get('ticket_type'))->get();
 
         foreach ($delivery_methods as $method) {
-            $ticket = TicketFactory::create($method);
-            $ticket->send($request);
+            $ticket = TicketFactory::create($request->all(), $method);
+            $ticket->send();
         }
 
         return ['success' => true];

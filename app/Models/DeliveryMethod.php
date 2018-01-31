@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $zendesk_subdomain
  * @property string $zendesk_username
  * @property string $zendesk_token
+ * @property string $zendesk_agent_id
  * @property string $teamwork_subdomain
  * @property string $teamwork_token
  *

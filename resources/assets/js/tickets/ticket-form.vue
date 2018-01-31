@@ -3,36 +3,53 @@
   <section class="Section">
     <div class="Section-container Section-container--narrow">
 
-      <h1 class="Section-title">{{ title }}</h1>
-      <p class="Section-intro">{{ intro }}</p>
+      <div v-show="is_sent">
+        <h1 class="Section-title">Message Sent!</h1>
+        <p class="Section-intro">Your message has been sent. We'll be in touch shortly.</p>
+      </div>
 
-      <div class="Section-body">
+      <div v-show="error">
+        <h1 class="Section-title">An Error Occurred!</h1>
+        <p class="Section-intro">Unfortunately your message could not be sent. Error: {{ error }}</p>
+        <p style="text-align: center;">
+          <button class="Button Button--small" type="button" @click="tryAgain">Try again</button>
+        </p>
+      </div>
 
-        <form class="Form" method="post" @submit.prevent="submit">
+      <div v-show="is_form_visible">
 
-          <div class="Form-body">
+        <h1 class="Section-title">{{ title }}</h1>
+        <p class="Section-intro">{{ intro }}</p>
 
-            <slot name="tabs"></slot>
+        <div class="Section-body">
 
-            <contact-field :name.sync="ticket.name" :email.sync="ticket.email"></contact-field>
+          <form class="Form" method="post" @submit.prevent="submit">
 
-            <p class="Form-label">{{ subjectLabel }}</p>
-            <input class="Form-control" type="text" :placeholder="subjectPlaceholder" v-model="ticket.subject" required>
+            <div class="Form-body">
 
-            <slot name="extra_fields"></slot>
+              <slot name="tabs"></slot>
 
-            <p class="Form-label">{{ messageLabel }}</p>
+              <contact-field :name.sync="ticket.name" :email.sync="ticket.email"></contact-field>
 
-            <message-field v-model="ticket.message"></message-field>
-            <attachments :files.sync="ticket.files" :is-uploading-files.sync="is_uploading_files"></attachments>
+              <p class="Form-label">{{ subjectLabel }}</p>
+              <input class="Form-control" type="text" :placeholder="subjectPlaceholder" v-model="ticket.subject" required>
 
-          </div>
+              <slot name="extra_fields"></slot>
 
-          <div class="Form-footer">
-            <button type="submit" :disabled="is_saving || is_uploading_files">{{ is_saving ? 'Sending...' : 'Send' }}</button>
-          </div>
+              <p class="Form-label">{{ messageLabel }}</p>
 
-        </form>
+              <message-field v-model="ticket.message"></message-field>
+              <attachments :files.sync="ticket.attachments" :is-uploading-files.sync="is_uploading_files"></attachments>
+
+            </div>
+
+            <div class="Form-footer">
+              <button class="Button Button--block" type="submit" :disabled="is_sending || is_uploading_files">{{ is_sending ? 'Sending...' : 'Send' }}</button>
+            </div>
+
+          </form>
+
+        </div>
 
       </div>
 
@@ -69,18 +86,28 @@
             return {
 
                 ticket:             {
-                    name:        'Barney Fife',
-                    email:       'barney@maybery.com',
-                    subject:     'Easter Sunday',
-                    message:     'Lorm ipsum means that its really importent for you to stay off drugs and stay in scool. You need to no things that will help you in life. Like MATHS and gym. You don\'t want to be dum.',
+                    name:        '',
+                    email:       '',
+                    subject:     '',
+                    message:     '',
                     postscript:  '',
                     ticket_type: this.type,
-                    files:       [],
+                    attachments: [],
                 },
-                is_saving:          false,
+                is_sending:         false,
+                is_sent:            false,
+                error:              null,
                 is_uploading_files: false,
 
             }
+        },
+
+        computed: {
+
+            is_form_visible() {
+                return !this.is_sent && !this.error;
+            },
+
         },
 
         watch: {
@@ -101,16 +128,27 @@
                 if (this.is_uploading_files)
                     return alert('Files are still uploading. Please wait...');
 
-                if (this.is_saving)
+                if (this.is_sending)
                     return;
 
-                this.is_saving = true;
+                this.is_sending = true;
 
-                ticketService.send(this.ticket).then((result) => {
-                    this.is_saving = false;
-                });
+                ticketService.send(this.ticket).then(() => {
+                    this.is_sending = false;
+                    this.is_sent    = true;
+                })
+                    .catch((error) => {
+                        alert('An error occurred.');
+                        this.is_sending = false;
+                        this.error      = error.message;
+                    });
 
             },
+
+            tryAgain() {
+                this.error = null;
+            },
+
         },
 
     }
