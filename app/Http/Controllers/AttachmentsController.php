@@ -15,7 +15,7 @@ class AttachmentsController extends Controller {
             $file_name = preg_replace('/\.' . $file->getClientOriginalExtension() . '$/', '', trim($file->getClientOriginalName()));
             $file_name = str_slug($file_name) . '.' . strtolower($file->getClientOriginalExtension());
 
-            $path = $file->storeAs('attachments', $file_name, ['disk' => 's3']);
+            $path = $file->storeAs('attachments', $file_name, ['disk' => 'attachments']);
             $result[] = [
                 'name' => $file->getClientOriginalName(),
                 'path' => $path,
