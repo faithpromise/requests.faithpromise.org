@@ -19,7 +19,7 @@ class AttachmentsController extends Controller {
             $result[] = [
                 'name' => $file->getClientOriginalName(),
                 'path' => $path,
-                'url'  => 'https://s3.' . config('filesystems.disks.s3.region') . '.amazonaws.com/' . config('filesystems.disks.s3.bucket') . '/' . $path,
+                'url'  => 'https://s3.' . config('filesystems.disks.attachments.region') . '.amazonaws.com/' . config('filesystems.disks.attachments.bucket') . '/' . $path,
             ];
         }
 
