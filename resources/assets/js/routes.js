@@ -4,6 +4,8 @@ import creative from './route_components/route-creative.vue';
 import tech from './route_components/route-tech.vue';
 import web from './route_components/route-web.vue';
 import facility from './route_components/route-facility.vue';
+import finance from './route_components/route-finance.vue';
+import hr from './route_components/route-hr.vue';
 import worshipTech from './route_components/route-worship-tech.vue';
 
 // import NProgress from 'nprogress';
@@ -25,6 +27,8 @@ const routes = [
             { name: 'creative', path: '/creative', component: creative },
             { name: 'web', path: '/web', component: web },
             { name: 'facility', path: '/facility', component: facility },
+            { name: 'finance', path: '/finance', component: finance },
+            { name: 'hr', path: '/hr', component: hr },
             { name: 'worship-tech', path: '/worship-tech', component: worshipTech },
         ],
     },
