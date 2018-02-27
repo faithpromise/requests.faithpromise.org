@@ -1,9 +1,9 @@
 Hi, {{ $method->name }}
 
-{{ $ticket->getExtendedMessage() }}
+{!! $ticket->getExtendedMessage() !!}
 
 
-Thank you,
+------
 
 {{ $ticket->getName() }}
 {{ $ticket->getEmail() }}
