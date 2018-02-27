@@ -138,7 +138,6 @@
                     this.is_sent    = true;
                 })
                     .catch((error) => {
-                        alert('An error occurred.');
                         this.is_sending = false;
                         this.error      = error.message;
                     });
