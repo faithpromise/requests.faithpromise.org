@@ -38,6 +38,12 @@
         </ul>
 
       </div>
+
+      <p>If a purchase is required, please indicate which
+        <strong>category, department, event, and location</strong> items should be filed under.</p>
+      <input class="Form-control" type="text" placeholder="Budget (category/department/event/location)" v-model="budget_source">
+
+
     </template>
 
   </ticket-form>
@@ -60,9 +66,10 @@
         data() {
             return {
 
-                project_type: PROJECT_TYPE_EVENT,
-                advertising:  [],
-                event_date:  '2018-04-01',
+                project_type:  PROJECT_TYPE_EVENT,
+                advertising:   [],
+                event_date:    '2018-04-01',
+                budget_source: '',
 
                 advertising_options: [
                     { value: 'Promotional Materials' },
@@ -106,10 +113,15 @@
                 if (!this.is_event)
                     return '';
 
-                let result = [
-                    !this.event_date ? 'No event date provided.' : 'Event date is: ' + this.event_date,
-                    this.advertising.length === 0 ? 'No advertising selected.' : 'Advertising needed: ' + this.advertising.join(', '),
-                ];
+                let result = [];
+
+                if (this.is_event)
+                    result.push('Event Date: ' + (this.event_date || 'No event date provided.'));
+
+                if (!this.is_event)
+                    result.push('Advertising: ' + (this.advertising.length ? this.advertising.join(', ') : 'none selected.'));
+
+                result.push('Budget to Use: ', this.budget_source.length ? this.budget_source : 'none provided');
 
                 return result.join('\n');
             },
