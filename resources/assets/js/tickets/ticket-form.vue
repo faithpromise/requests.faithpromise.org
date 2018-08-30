@@ -136,6 +136,7 @@
                 ticketService.send(this.ticket).then(() => {
                     this.is_sending = false;
                     this.is_sent    = true;
+                    window.scrollTo(0, 0);
                 })
                     .catch((error) => {
                         this.is_sending = false;
