@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property string $ticket_type
  * @property string $delivery_method
+ * @property boolean $send_receipt
  * @property string $name
  * @property string $email
  * @property string $zendesk_subdomain
