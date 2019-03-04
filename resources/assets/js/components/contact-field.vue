@@ -1,7 +1,7 @@
 <template>
   <div>
     <input class="Form-control" type="text" placeholder="your name" v-model="name_value" required>
-    <input class="Form-control" type="text" placeholder="email" v-model="email_value" required>
+    <input class="Form-control" type="email" placeholder="email" v-model="email_value" required>
   </div>
 </template>
 <script>
